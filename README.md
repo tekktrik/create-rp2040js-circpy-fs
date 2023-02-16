@@ -1,3 +1,3 @@
-# rp2040js-circpy
+# rp2040js-circpy-create-fs
 
-GitHub Actions for running CircuitPython using rp2040js
+GitHub Action for creating a FAT12 filesystem for CircuitPython running in rp2040js
