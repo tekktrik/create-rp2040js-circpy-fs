@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
-name: 'Build CI'
+name: 'Create filesystem for CircuitPython on rp2040js'
 author: Alec Delaney
 description: 'Build CI used for pushes and pull requests'
 inputs:
