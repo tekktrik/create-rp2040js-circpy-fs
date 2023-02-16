@@ -1,2 +1,3 @@
-# create-rp2040js-circpy-fs
-Create a FAT12 flesystem for CircuitPython running on rp2040js
+# rp2040js-circpy-actions
+
+Actions for running CircuitPython using rp2040js
