@@ -27,8 +27,7 @@ jobs:
         fi
     - name: Confirm test output
       run: |
-        echo "Filesystem image: ${{ steps.create-fs-test.outputs.fat12-image }}"
-        if [ ${{ steps.create-fs-test.outputs.fat12-image }} != $(realpath fat12test.img)]; then
+        if [ ${{ steps.create-fs-test.outputs.fat12-image }} != $(realpath fat12test.img) ]; then
           echo "Output filesystem image filepath does not match the file created!"
           exit 1
         fi
