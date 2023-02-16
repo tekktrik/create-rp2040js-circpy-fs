@@ -2,9 +2,10 @@
 #
 # SPDX-License-Identifier: MIT
 
-name: 'Create filesystem for CircuitPython on rp2040js'
+name: 'Create CircuitPython filesystem for rp2040js'
 author: Alec Delaney
-description: 'Build CI used for pushes and pull requests'
+description: |
+  'Create a FAT12 filesystem for use in rp2040js when running CircuitPython.'
 inputs:
   input-folder:
     description: 'A folder representing the filesystem to be created'
