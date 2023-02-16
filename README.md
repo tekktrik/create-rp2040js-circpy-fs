@@ -1,3 +1,3 @@
-# rp2040js-circpy-actions
+# rp2040js-circpy
 
-Actions for running CircuitPython using rp2040js
+GitHub Actions for running CircuitPython using rp2040js
