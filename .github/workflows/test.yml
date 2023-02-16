@@ -1,0 +1,34 @@
+# SPDX-FileCopyrightText: 2023 Alec Delaney, written for Adafruit Industries
+#
+# SPDX-License-Identifier: MIT
+
+name: Test CI
+
+on: [pull_request, push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - name: Test creating the filesystem
+      id: create-fs-test
+      uses: ./create-fs
+      with:
+        fs-name: fat12test.img
+        input-folder: ./tests/create-fs
+        mount-folder: ./create-fs-moilesunt
+    - name: Confirm FAT12 image file
+      run: |
+        if [ ! -f "fat12test.img" ]; then
+          echo "FAT12 filesystem image not found!"
+          exit 1
+        fi
+    - name: Confirm test output
+      run: |
+        echo "Filesystem image: ${{ steps.create-fs-test.outputs.fat12-image }}"
+        if [ ${{ steps.create-fs-test.outputs.fat12-image }} != $(realpath fat12test.img)]; then
+          echo "Output filesystem image filepath does not match the file created!"
+          exit 1
+        fi
