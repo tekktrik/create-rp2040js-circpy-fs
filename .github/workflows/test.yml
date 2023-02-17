@@ -12,13 +12,15 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        path: fs-mount-action
     - name: Test creating the filesystem
       id: create-fs-test
       uses: ./
       with:
         fs-name: fat12test.img
-        input-folder: ./tests/create-fs
-        mount-folder: ./create-fs-moilesunt
+        input-folder: fs-mount-action/tests/create-fs
+        mount-folder: create-fs-mount
     - name: Confirm FAT12 image file
       run: |
         if [ ! -f "fat12test.img" ]; then
@@ -31,3 +33,22 @@ jobs:
           echo "Output filesystem image filepath does not match the file created!"
           exit 1
         fi
+    - name: Test removing mount folder
+      run: |
+        if [ ! -d "create-fs-mount" ]; then
+          echo "Temporary mount folder still exists after action!"
+          exit 1
+        fi
+    - name: Test image contents
+      run: |
+        mkdir testmount
+        sudo mount -o loop fat12test.img testmount/
+        testpath="tests/create-fs"
+        testfiles=$(find $testpath -not -path $testpath | xargs realpath --relative-to $testpath)
+        imagefiles=$(find testmount -not -path testmount | xargs realpath --relative-to testmount)
+        if [ "${#thing[@]}" != "${#thing[@]}" ]; then
+          echo "Contents of image do not match expected files!"
+          exit 1
+        fi
+        sudo umount testmount/ 
+        rm -rf testmount
