@@ -20,7 +20,7 @@ inputs:
     default: 'fat12mount'
 outputs:
   fat12-image:
-    description: 'Filepath to the created FAT12 image'
+    description: 'Absolute filepath to the created FAT12 image'
     value: ${{ steps.create-fat12-file.outputs.fat12-image }}
 runs:
   using: "composite"
@@ -31,7 +31,8 @@ runs:
       run: |
         truncate ${{ inputs.fs-name }} -s 1M
         mkfs.vfat -F12 -S512 ${{ inputs.fs-name }}
-        echo "fat12-image=${{ inputs.fs-name }}" >> $GITHUB_OUTPUT
+        imagefp=$(realpath ${{ inputs.fs-name }})
+        echo "fat12-image=$imagefp" >> $GITHUB_OUTPUT
     - name: Mount the filesystem
       id: mount-filesystem
       shell: bash
