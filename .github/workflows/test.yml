@@ -43,7 +43,7 @@ jobs:
       run: |
         mkdir testmount
         sudo mount -o loop fat12test.img testmount/
-        testpath="tests/create-fs"
+        testpath="fs-mount-action/tests/create-fs"
         testfiles=$(find $testpath -not -path $testpath | xargs realpath --relative-to $testpath)
         imagefiles=$(find testmount -not -path testmount | xargs realpath --relative-to testmount)
         if [ "${#thing[@]}" != "${#thing[@]}" ]; then
