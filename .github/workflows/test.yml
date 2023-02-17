@@ -35,7 +35,7 @@ jobs:
         fi
     - name: Test removing mount folder
       run: |
-        if [ ! -d "create-fs-mount" ]; then
+        if [ -d "create-fs-mount" ]; then
           echo "Temporary mount folder still exists after action!"
           exit 1
         fi
