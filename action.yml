@@ -49,4 +49,4 @@ runs:
       shell: bash
       run: |
         sudo umount ${{ inputs.mount-folder }}
-        sudo rm -rf ${{ inputs.ount-folder }}
+        sudo rm -rf ${{ inputs.mount-folder }}
