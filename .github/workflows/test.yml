@@ -16,7 +16,7 @@ jobs:
         path: fs-mount-action
     - name: Test creating the filesystem
       id: create-fs-test
-      uses: ./
+      uses: ./fs-mount-action
       with:
         fs-name: fat12test.img
         input-folder: fs-mount-action/tests/create-fs
