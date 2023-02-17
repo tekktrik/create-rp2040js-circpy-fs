@@ -50,5 +50,5 @@ jobs:
           echo "Contents of image do not match expected files!"
           exit 1
         fi
-        sudo umount testmount/ 
+        sudo umount testmount/
         rm -rf testmount
